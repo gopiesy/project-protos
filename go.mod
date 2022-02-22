@@ -1,4 +1,4 @@
-module github.com/gopiesy/proto
+module github.com/gopiesy/project-protos
 
 go 1.17
 
