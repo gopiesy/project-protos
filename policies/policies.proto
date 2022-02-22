@@ -5,13 +5,6 @@ import "google/protobuf/timestamp.proto";
 package policies;
 option go_package = "proto/policles";
 
-// Snapshot represent the latest policy dump on the server
-message Snapshot {
-  string Name = 1;
-  google.protobuf.Timestamp Time = 2;
-  repeated bytes Data = 3;
-}
-
 // PolicyState represent the status of a single policy
 message PolicyState {
   string Name = 1;
@@ -27,11 +20,15 @@ message SnapshotStatus {
   repeated PolicyState PolicyStatus = 2;
 }
 
-// GetSnapshots with a continues stream of snapshots when available
-message GetSnapshots { Snapshot latest = 1; }
+// Snapshot represent the latest policy dump on the server
+message Snapshot {
+  string Name = 1;
+  google.protobuf.Timestamp Time = 2;
+  repeated bytes Data = 3;
+}
 
 service PolicyService {
   // StreamSnapshots implemented by GT to continuesly stream snapshots and get
   // the status
-  rpc StreamSnapshots(stream SnapshotStatus) returns (stream GetSnapshots) {}
+  rpc StreamSnapshots(stream SnapshotStatus) returns (stream Snapshot) {}
 }

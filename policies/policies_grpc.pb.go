@@ -46,7 +46,7 @@ func (c *policyServiceClient) StreamSnapshots(ctx context.Context, opts ...grpc.
 
 type PolicyService_StreamSnapshotsClient interface {
 	Send(*SnapshotStatus) error
-	Recv() (*GetSnapshots, error)
+	Recv() (*Snapshot, error)
 	grpc.ClientStream
 }
 
@@ -58,8 +58,8 @@ func (x *policyServiceStreamSnapshotsClient) Send(m *SnapshotStatus) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *policyServiceStreamSnapshotsClient) Recv() (*GetSnapshots, error) {
-	m := new(GetSnapshots)
+func (x *policyServiceStreamSnapshotsClient) Recv() (*Snapshot, error) {
+	m := new(Snapshot)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func _PolicyService_StreamSnapshots_Handler(srv interface{}, stream grpc.ServerS
 }
 
 type PolicyService_StreamSnapshotsServer interface {
-	Send(*GetSnapshots) error
+	Send(*Snapshot) error
 	Recv() (*SnapshotStatus, error)
 	grpc.ServerStream
 }
@@ -110,7 +110,7 @@ type policyServiceStreamSnapshotsServer struct {
 	grpc.ServerStream
 }
 
-func (x *policyServiceStreamSnapshotsServer) Send(m *GetSnapshots) error {
+func (x *policyServiceStreamSnapshotsServer) Send(m *Snapshot) error {
 	return x.ServerStream.SendMsg(m)
 }
 
