@@ -3,7 +3,7 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 
 package policies;
-option go_package = "proto/policles";
+option go_package = "proto/policies";
 
 // PolicyState represent the status of a single policy
 message PolicyState {

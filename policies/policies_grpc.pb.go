@@ -4,7 +4,7 @@
 // - protoc             v3.19.2
 // source: policies/policies.proto
 
-package policles
+package policies
 
 import (
 	context "context"
